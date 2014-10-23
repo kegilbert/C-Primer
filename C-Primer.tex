@@ -256,7 +256,21 @@ You'll see that in most of my examples I have used a function called printf. Thi
 \vskip 0.05in
 \centerline{\textbf{Figure 8. }Simple printf example}
 \vskip 0.1in
-In Figure 8 above you can see that although I assigned a value of 300 to the variable a, 44 was printed out as the value. This is because again a char allocates a byte, or 8 bits, or data. 300 requires more than 8 bits to represent, so any bits after bit 8 are truncated, or dropped. 
+In Figure 8 above you can see that although I assigned a value of 300 to the variable a, 44 was printed out as the value. This is because again a char allocates a byte, or 8 bits, or data. 300 requires more than 8 bits to represent, so any bits after bit 8 are truncated, or dropped. \\
+
+A quick additional side note is the \#include that is at the top of most of my examples. Pre-processor statements are indicated by "\#"s in C. These are notes to the compiler and are not compiled. \#include links to a header file that provides additional functions. In this case stdio.h includes I/O functions such as printf. 
+
+\subsection{Pointers}
+Pointers are a very powerful tool. As a mechanic they are very simplistic. Essentially pointers are variables that contain a memory address that points to another variable. The * and \& operators are typically used to create and dereference pointers. The * dereferences while the \& means to read the memory address a variable is stored at. Dereferencing a pointer means that you are reading the data stored at the memory location in your pointer variable.
+
+\fbox{\includegraphics[width=\textwidth]{images/pointer}}
+\vskip 0.05in
+\centerline{\textbf{Figure 9. }Pointer memory layout diagram}
+\vskip 0.1in
+
+The printfs in Figure 9 would return "0x3008" and 'a' respectively.
+\section{Embedded Development and RASWare} 
+Because we are developing on an embedded system, we get access to GPIO pins to allow us to communicate with the outside world. The goal of RASware is to simplify and create an abstraction layer for initialization and calling routines. I recommend going through the RASDemo files as well as the RASLib include files to look at the function prototypes. I apologize for the cramped and rushed nature of this paper and realize it may still not help much. I will be around the office and can go over in person some more of the subject.
 
 %%% End document
 \end{document}
