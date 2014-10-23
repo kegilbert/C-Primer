@@ -104,7 +104,7 @@ The best way to learn programming is through experience.
 ECE students at UT Austin can get SSH access to Linux machines on campus through this \href{http://www.ece.utexas.edu/it/remote-Linux}{link}. The bottom of the page mentions Putty, a free ssh client for windows. If you want to learn some Linux, I recommend using this tool or creating a virtual machine and running a simple Linux distribution such as Ubuntu or Debian. Ubuntu is more user friendly and is typically the least jarring coming straight from a Windows environment, but comes with a lot of unnecessary components I find. Lubuntu or Xbuntu run the same core, but have a different and more lightweight Graphical User Interface (GUI). Debian is the slightly smaller and more stable version of Ubuntu. Arch Linux is absolutely bare bones and very lightweight, but has the highest learning curve. Feel free to experiment and try out different versions.
 
 \section{Levels of Abstraction}
-The first step I would like to take is to break the levels of abstraction for software to hardware development. Dr. Patt is a large proponent of this, and the following figure is taken from his course notes.
+The first step I would like to take is to break the levels of abstraction for software to hardware development. Dr. Yale Patt is a large proponent of this, and the following figure is taken from his course notes.
 \vskip 0.1in
 \includegraphics[width=\textwidth]{images/levels_of_abstraction}
 \vskip 0.05in
@@ -229,11 +229,34 @@ While arithmetic and assignment operations are vital, we need to be able to actu
 \vskip 0.1in
 \centerline{\textbf{Figure 5. }Example of a structure definition and creation}
 \vskip 0.1in
+
+You'll notice the logic syntax I used for checking to see if a variable was equal to a particular value was of the form "x == 1" rather than "x = 1". A single equal sign acts as an assignment operator, meaning that in the case of "x = 1" you are assigning the value of decimal 1 to the variable x. Booleans (true,false) are not natively supported in C. Instead 0 and 1 are used to represent true and false. This means that the operation "1 == 1" for example with return "1", meaning that the two values are equal. Likewise "5 < 2" will return a 0 as 5 is greater than two. There are quite a few online resources that have a more comprehensive listing of C logic and arithmetic operators that I recommend you skim through later to just get an idea of how to manipulate data.
+
 \subsection{Functions}
-Functions
+You'll notice in all of my examples I have the same line: \textit{"int main(void)"}. This is an example of a function. In a microcontroller, there exists a block of reserved memory called a "vector table". They contain memory locations of important system functions. The reset vector for example contains the address of the first instruction of the user program flashed onto the board. Whenever the system is reset, the program counter (PC) is loaded with the value stored in the reset vector and execution begins. This starting address is found by the "main" function. Your program begins within the main function. A function in C follows the basic structure of: \\
+\centerline{returnValue \textbf{functionName}(param1, param2, param3,...)}\\
+So in the example of main, the function returns an integer, and takes in no parameters. Everything enclosed within the '{ }' are part of the function. The calling convention for a function is:\\
+\centerline{var return = \textbf{function}(param1, param2);}\\
+When creating a function, you typically include a function prototype or definition to allow the compiler to recognize the method. You will often see these included in header files to allow a file to use functions from another location. Look at RASWare2013 as an example of this. Below are two basic examples of a function being made and used. The first image is a completely explicit example, whereas the second image has the exact same functionality, but a more condensed codebase by using implicit data flow.
+
+\fbox{\includegraphics[width=\textwidth]{images/basic_function}}
+\vskip 0.05in
+\centerline{\textbf{Figure 6. }Simple example of a function that determines whether or not a number is even}
+\vskip 0.1in
+
+\fbox{\includegraphics[width=\textwidth]{images/advanced_function}}
+\vskip 0.05in
+\centerline{\textbf{Figure 7. }The same function as in figure 6, but more condensed}
+\vskip 0.1in
 
 \subsubsection{Input/Output (I/O)}
-kbj
+You'll see that in most of my examples I have used a function called printf. This function displays data as a string onto the output console. The "\%d" portion within the string parameter will take in a decimal (integer) value and print it as a string. There are several different formats you can use. For example, "\%x" displays the integer value in hexadecimal. "\%0.8x" will display a hexadecimal value with up to 8 preceding 0's. This is helpful to column align values with unmatched lengths (a 64 bit value that contains 0x12 would be printed as 0x00000012). The value that gets supplied comes from printfs following input parameters. So printf("hello \%d", 10): would print "hello 10". The \\n seen in most of my printf statements is a newline. Looking far back at Figure 4 I added an example of printing a character as both a char and as the hexadecimal value.
+
+\fbox{\includegraphics[width=\textwidth]{images/simple_printf}}
+\vskip 0.05in
+\centerline{\textbf{Figure 8. }Simple printf example}
+\vskip 0.1in
+In Figure 8 above you can see that although I assigned a value of 300 to the variable a, 44 was printed out as the value. This is because again a char allocates a byte, or 8 bits, or data. 300 requires more than 8 bits to represent, so any bits after bit 8 are truncated, or dropped. 
 
 %%% End document
 \end{document}
